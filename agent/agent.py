@@ -1,8 +1,8 @@
 from config_reader import ConfigReader
-from monitor import Monitor
-import importlib
+from log_manager import LogManager
+from log_manager import LogManager
 
-global config
+logger = LogManager().logger
 
 class Agent(object):
     def __init__(self):
@@ -14,8 +14,10 @@ class Agent(object):
         module = __import__(file_name)
         my_class = getattr(module, cls_name)
         self.monitor_driver = my_class()
+        logger.debug("This is a debug message!!!")
 
 
 if __name__ == "__main__":
     agent = Agent()
-    print "Command status : %s" % agent.monitor_driver.collect_host_stats()
+
+    logger.info("Command status : %s" % agent.monitor_driver.collect_host_stats())

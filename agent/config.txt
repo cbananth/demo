@@ -1,9 +1,9 @@
 
 [MONITOR]
-#monitoring_driver = pcp_monitor.PcpMonitor
-monitoring_driver = sysdig_monitor.SysDigMonitor
+monitoring_driver = pcp_monitor.PcpMonitor
+#monitoring_driver = sysdig_monitor.SysDigMonitor
 
 [LOGGING]
-log_level = INFO
-log_file = /var/log/agent.log
+log_level = DEBUG
+log_file = ../logs/agent.log
 console_debug = True
