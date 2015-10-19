@@ -4,6 +4,6 @@ monitoring_driver = pcp_monitor.PcpMonitor
 #monitoring_driver = sysdig_monitor.SysDigMonitor
 
 [LOGGING]
-log_level = DEBUG
-log_file = ../logs/agent.log
+log_level = INFO
+log_file = agent.log
 console_debug = True

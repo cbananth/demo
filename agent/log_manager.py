@@ -3,11 +3,13 @@ import logging
 import logging.handlers
 from config_reader import ConfigReader
 
+logger = logging.getLogger("agent-logger")
+
 
 class LogManager(object):
     """Logging framework for the monitoring agent"""
     def __init__(self):
-        self.logger = logging.getLogger("agent-logger")
+        self.logger = logger
         config_reader = ConfigReader("config.txt")
         config = config_reader.load_config()
         log_level = config['log_level']
@@ -27,6 +29,11 @@ class LogManager(object):
         :param console_debug: Boolean value that enables/disables console debug
         :return: logger object
         """
+
+        this_dir = os.path.split(os.path.realpath(__file__))[0]
+        log_folder = os.path.join(this_dir, "logs")
+        log_file_path = os.path.join(log_folder, log_file)
+
         if log_level not in logging._levelNames:
             print "Error: loglevel '{0}' is invalid, must be one of (DEBUG, INFO, WARNING, ERROR)".format(log_level)
             exit(2)
@@ -36,9 +43,9 @@ class LogManager(object):
         formatter = logging.Formatter(log_format)
         self.logger.setLevel(log_level)
 
-        fh = logging.handlers.RotatingFileHandler(filename=log_file, maxBytes=2097152, backupCount=10)  # backupcount is the no. of files to keep while rotating
+        fh = logging.handlers.RotatingFileHandler(filename=log_file_path, maxBytes=2097152, backupCount=10)  # backupcount is the no. of files to keep while rotating
         fh.setFormatter(formatter)
-        fh.setLevel(log_level)    # this hard-coding makes log file to always have all the logs making it easier to debug any issue
+        fh.setLevel(log_level)
         self.logger.addHandler(fh)
 
         if console_debug:

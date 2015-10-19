@@ -1,23 +1,26 @@
 from config_reader import ConfigReader
-from log_manager import LogManager
+import logging
+from monitor import Monitor
 from log_manager import LogManager
 
-logger = LogManager().logger
+logger = logging.getLogger("agent-logger")
+
 
 class Agent(object):
     def __init__(self):
+        log_mgr = LogManager()
         config_reader = ConfigReader("config.txt")
         config = config_reader.load_config()
+        logger.info("Loaded configurations")
         driver = config['monitoring_driver']
         file_name, cls_name = driver.strip().split(".")
 
         module = __import__(file_name)
-        my_class = getattr(module, cls_name)
-        self.monitor_driver = my_class()
-        logger.debug("This is a debug message!!!")
+        driver_class = getattr(module, cls_name)
+        self.monitor = Monitor(driver_class)
 
 
 if __name__ == "__main__":
     agent = Agent()
 
-    logger.info("Command status : %s" % agent.monitor_driver.collect_host_stats())
+    logger.info("Home Directory : %s" % agent.monitor.collect_host_stats())

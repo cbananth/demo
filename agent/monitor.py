@@ -1,22 +1,24 @@
+import logging
+
+logger = logging.getLogger("agent-logger")
 
 
 class Monitor(object):
     """Abstract class for agent monitor"""
-    def __init__(self, strategy):
+    def __init__(self, driver):
         self.host_stats = {}
         self.container_stats = {}
-        self.driver = strategy()
-        pass
+        self.driver = driver()
 
     def collect_host_stats(self):
-        pass
+        return self.driver.collect_host_stats()
 
     def collect_container_stats(self):
-        pass
+        return self.driver.collect_container_stats()
 
     def collect_errors(self):
-        pass
+        return self.driver.collect_errors()
 
     def stream_logs(self):
-        pass
+        return self.driver.stream_logs()
 

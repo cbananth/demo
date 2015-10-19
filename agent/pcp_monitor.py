@@ -1,8 +1,8 @@
 from monitor import Monitor
 import os
-from log_manager import LogManager
+import logging
 
-logger = LogManager().logger
+logger = logging.getLogger("agent-logger")
 
 
 class PcpMonitor(Monitor):
@@ -13,8 +13,7 @@ class PcpMonitor(Monitor):
         logger.info("Using PCP to monitor Docker")
 
     def collect_host_stats(self):
-        result = os.system('hostname')
-        return result
+        return os.getenv('HOME')
 
     def collect_container_stats(self):
         pass
