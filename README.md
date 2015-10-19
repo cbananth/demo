@@ -1,2 +1,2 @@
 # demo
-Monitoring for demo
+Demo code for monitoring Docker
