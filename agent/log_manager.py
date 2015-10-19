@@ -10,7 +10,7 @@ class LogManager(object):
     """Logging framework for the monitoring agent"""
     def __init__(self):
         self.logger = logger
-        config_reader = ConfigReader("config.txt")
+        config_reader = ConfigReader("config.ini")
         config = config_reader.load_config()
         log_level = config['log_level']
         log_file = config['log_file']

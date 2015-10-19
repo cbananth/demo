@@ -16,5 +16,5 @@ class ConfigReader(object):
 
 if __name__ == "__main__":
 
-    cr = ConfigReader("config.txt")
+    cr = ConfigReader("config.ini")
     print cr.load_config()

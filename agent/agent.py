@@ -11,7 +11,7 @@ class Agent(object):
     """Agent runs on each host collecting statistics from the host and the containers"""
     def __init__(self):
         log_mgr = LogManager()
-        config_reader = ConfigReader("config.txt")
+        config_reader = ConfigReader("config.ini")
         config = config_reader.load_config()
         logger.info("Loaded configurations")
         driver = config['monitoring_driver']
