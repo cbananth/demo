@@ -13,12 +13,12 @@ class Monitor(object):
     def collect_host_stats(self):
         return self.driver.collect_host_stats()
 
-    def collect_container_stats(self):
-        return self.driver.collect_container_stats()
-
-    def collect_errors(self):
-        return self.driver.collect_errors()
+    def collect_container_stats(self, id):
+        return self.driver.collect_container_stats(id)
 
     def stream_logs(self):
         return self.driver.stream_logs()
+
+    def list_all_containers(self):
+        return self.driver.list_all_containers()
 

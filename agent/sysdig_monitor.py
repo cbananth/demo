@@ -1,4 +1,4 @@
-from monitor import Monitor
+from stats_monitor import Monitor
 import os
 import logging
 

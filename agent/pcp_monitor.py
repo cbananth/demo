@@ -1,5 +1,4 @@
-from monitor import Monitor
-import os
+from stats_monitor import Monitor
 import logging
 
 logger = logging.getLogger("agent-logger")

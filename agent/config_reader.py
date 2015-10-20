@@ -14,7 +14,9 @@ class ConfigReader(object):
                 self.config[option] = self.conf_parser.get(section, option)
         return self.config
 
-if __name__ == "__main__":
 
-    cr = ConfigReader("config.ini")
-    print cr.load_config()
+# if __name__ == "__main__":
+
+#    cr = ConfigReader("config.ini")
+#    print cr.load_config()
+
