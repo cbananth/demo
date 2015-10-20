@@ -12,6 +12,7 @@ class DockerPyMonitor(Monitor):
         # client = Client(base_url="unix://var/run/docker.sock")
         # result = client.inspect_container('c4e106bf9a32')
         self.container_stats = {}
+        self.client = Client(base_url='tcp://127.0.0.1:2375')
 
     def collect_host_stats(self):
         logger.info("Collecting Host statistics")
@@ -31,13 +32,16 @@ class DockerPyMonitor(Monitor):
 
     def list_all_containers(self):
         # todo: Needs to be tested
+        # to do : Satya : Modify this for implementing list of containers
         # threading.Timer(5.0, self.list_all_containers).start()
         # client = docker.Client(base_url='unix://var/run/docker.sock', version="1.20")
         # return client.containers()
         return ['1234', '5678']
 
     def _get_container_stats(self, id):
-        return {}
+        # to do : Satya : Modify this for implementing threading logic
+        stats = self.client.stats(id)
+        return stats
 
 
 
