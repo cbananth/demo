@@ -26,7 +26,7 @@ class Agent(object):
         logger.info("Loaded configurations")
 
         self._load_stats_monitor()
-        self._load_log_collector()
+        #self._load_log_collector()
         self.containers = self.list_all_containers()
 
     def get_all_stats(self):
@@ -65,6 +65,6 @@ class Agent(object):
 if __name__ == "__main__":
     agent = Agent()
     agent.get_all_stats()
-    agent.get_all_logs()
-    agent.get_all_errors()
+#     agent.get_all_logs()
+#     agent.get_all_errors()
 
